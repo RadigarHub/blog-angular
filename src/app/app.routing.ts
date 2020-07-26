@@ -13,6 +13,7 @@ const appRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'inicio', component: HomeComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'logout/:sure', component: LoginComponent},
     {path: 'registro', component: RegisterComponent},
     {path: '**', component: ErrorComponent} // Los ** significan cuando la ruta no exista y se debe de poner siempre al final de todas las rutas
 ];
