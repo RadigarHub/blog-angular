@@ -43,7 +43,7 @@ export class UserEditComponent implements OnInit {
   onSubmit(form) {
     this._userService.update(this.token, this.user).subscribe(
       response => {
-        if (response.status == 'success') {
+        if (response && response.status) {
           console.log(response);
           this.status = 'success';
 
