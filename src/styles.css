@@ -3,3 +3,14 @@
     width: 80px;
     margin-bottom: 10px;
 }
+
+.avatar_mask {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar_mask img {
+    height: 40px;
+}
