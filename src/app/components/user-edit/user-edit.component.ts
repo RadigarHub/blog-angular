@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { global } from 'src/app/services/global';
 
 @Component({
   selector: 'app-user-edit',
@@ -22,6 +23,24 @@ export class UserEditComponent implements OnInit {
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
   };
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg, .jpeg, .png, .gif",
+    maxSize: "50",
+    uploadAPI:  {
+      url: global.url+'user/upload',
+      method: "POST",
+      headers: {
+        "Authorization": this._userService.getToken()
+      }
+    },
+    theme: "attachPin",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    attachPinText: 'Sube tu avatar de usuario',
+  };
+  resetVar = true;
 
   constructor(
     private _userService: UserService
@@ -82,6 +101,11 @@ export class UserEditComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+
+  avatarUpload(datos) {
+    let data = JSON.parse(datos.response);
+    this.user.image = data.image;
   }
 
 }
