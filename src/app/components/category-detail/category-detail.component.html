@@ -1,1 +1,7 @@
-<p>category-detail works!</p>
+<div class="loading" *ngIf="!category">
+    Cargando...
+</div>
+<div class="container-fluid mt-3" *ngIf="category">
+    <h1>{{category.name}}</h1>
+    <hr>
+</div>
