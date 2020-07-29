@@ -17,6 +17,7 @@ export class PostNewComponent implements OnInit {
   public token;
   public status: string;
   public post: Post;
+  public categories;
 
   public froala_options: Object = {
     charCounterCount: true,
@@ -40,6 +41,23 @@ export class PostNewComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log(this.post);
+    this.getCategories();
+  }
+
+  getCategories() {
+    this._categoryService.getCategories().subscribe(
+      response => {
+        if (response.status == 'success') {
+          this.categories = response.categories;
+          this.status = 'success';
+          //console.log(this.categories);
+        }
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error);
+      }
+    );
   }
 
 }
