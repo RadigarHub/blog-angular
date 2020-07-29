@@ -69,12 +69,10 @@ export class PostNewComponent implements OnInit {
       response => {
         if (response.status == 'success') {
           this.categories = response.categories;
-          this.status = 'success';
           //console.log(this.categories);
         }
       },
       error => {
-        this.status = 'error';
         console.log(<any>error);
       }
     );
@@ -83,6 +81,10 @@ export class PostNewComponent implements OnInit {
   imageUpload(data) {
     let image_data = JSON.parse(data.response);
     this.post.image = image_data.image;
+  }
+
+  onSubmit(form) {
+    console.log(this.post);
   }
 
 }
