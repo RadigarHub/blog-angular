@@ -1,3 +1,16 @@
 <div class="col-md-12 mt-3">
     <h1>{{page_title}}</h1>
+
+    <!-- Mensajes de alerta -->
+
+    <!-- Formulario de crear entrada -->
+    <form class="col-md-5 ml-0 pl-0" #postNew="ngForm" (ngSubmit)="onSubmit(postNew)">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" name="title" #title="ngModel" [(ngModel)]="post.title" class="form-control" required />
+            <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
+                El título no es válido
+            </small>
+        </div>
+    </form>
 </div>
