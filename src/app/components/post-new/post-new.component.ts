@@ -86,8 +86,21 @@ export class PostNewComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(this.post);
-    console.log(this._postService.pruebas());
+    this._postService.create(this.token, this.post).subscribe(
+      response => {
+        if (response.status == 'success') {
+          this.post = response.post;
+          this.status = 'success';
+          this._router.navigate(['/inicio']);
+        } else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        console.log(<any>error);
+        this.status = 'error';
+      }
+    );
   }
 
 }
