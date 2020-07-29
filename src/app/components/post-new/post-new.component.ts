@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { CategoryService } from '../../services/category.service';
 import { Post } from '../../models/post';
+import { global } from '../../services/global';
 
 @Component({
   selector: 'app-post-new',
@@ -26,6 +27,25 @@ export class PostNewComponent implements OnInit {
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
   };
+
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg, .jpeg, .png, .gif",
+    maxSize: "50",
+    uploadAPI:  {
+      url: global.url+'post/upload',
+      method: "POST",
+      headers: {
+        "Authorization": this._userService.getToken()
+      }
+    },
+    theme: "attachPin",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    attachPinText: 'Subir una imagen',
+  };
+  resetVar = true;
 
   constructor(
     private _route: ActivatedRoute,
@@ -58,6 +78,11 @@ export class PostNewComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+
+  imageUpload(data) {
+    let image_data = JSON.parse(data.response);
+    this.post.image = image_data.image;
   }
 
 }
