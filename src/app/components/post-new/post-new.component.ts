@@ -20,6 +20,7 @@ export class PostNewComponent implements OnInit {
   public status: string;
   public post: Post;
   public categories;
+  public is_edit: boolean;
 
   public froala_options: Object = {
     charCounterCount: true,
@@ -59,6 +60,7 @@ export class PostNewComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
+    this.is_edit = false;
   }
 
   ngOnInit(): void {
