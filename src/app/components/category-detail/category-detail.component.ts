@@ -38,6 +38,19 @@ export class CategoryDetailComponent implements OnInit {
           if (response.status == 'success') {
             //console.log(response);
             this.category = response.category;
+
+            this._categoryService.getPosts(id).subscribe(
+              response => {
+                if (response.status == 'success') {
+                  this.posts = response.posts;
+                } else {
+                  this._router.navigate(['/inicio']);
+                }
+              },
+              error => {
+                console.log(<any>error);
+              }
+            );
           } else {
             this._router.navigate(['/inicio']);
           }
