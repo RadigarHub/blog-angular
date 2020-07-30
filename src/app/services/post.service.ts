@@ -19,6 +19,9 @@ export class PostService {
     }
 
     create(token, post): Observable<any> {
+        // Limpiar campo content (editor de texto froala): htmlentities > UTF8
+        post.content = global.htmlEntities(post.content);
+
         let json = JSON.stringify(post);
         let params = "json="+json;
 
@@ -39,6 +42,9 @@ export class PostService {
     }
 
     update(token, post, id): Observable<any> {
+        // Limpiar campo content (editor de texto froala): htmlentities > UTF8
+        post.content = global.htmlEntities(post.content);
+        
         let json = JSON.stringify(post);
         let params = "json=" + json;
 

@@ -42,6 +42,9 @@ export class UserService {
     }
 
     update(token, user): Observable<any> {
+        // Limpiar campo description (editor de texto froala): htmlentities > UTF8
+        user.description = global.htmlEntities(user.description);
+
         let json = JSON.stringify(user);
         let params = "json="+json;
 
