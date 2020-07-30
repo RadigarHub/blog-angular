@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
+import { global } from '../../services/global';
 
 @Component({
   selector: 'app-post-detail',
@@ -12,12 +13,15 @@ import { PostService } from '../../services/post.service';
 export class PostDetailComponent implements OnInit {
 
   public post;
+  public url: string;
 
   constructor(
     private _postService: PostService,
     private _route: ActivatedRoute,
     private _router: Router
-  ) { }
+  ) {
+    this.url = global.url;
+  }
 
   ngOnInit(): void {
     this.getPost();

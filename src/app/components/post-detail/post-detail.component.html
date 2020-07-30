@@ -5,5 +5,11 @@
     <h1>{{post.title}}</h1>
     <p>{{post.category.name}} - {{post.user.name + ' ' + post.user.surname}}</p>
     <hr>
+    <div *ngIf="post.image">
+        <img src="{{url + 'post/image/' + post.image}}" class="w-50" />
+    </div>
+    <div *ngIf="!post.image">
+        <img src="assets/images/default.jpg" class="w-50" />
+    </div>
     <p [innerHTML]="post.content"></p>
 </div>
