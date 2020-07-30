@@ -3,7 +3,9 @@
 </div>
 <div class="col-md-12" *ngIf="post">
     <h1>{{post.title}}</h1>
-    <p>{{post.category.name}} - {{post.user.name + ' ' + post.user.surname}}</p>
+    <p>
+        <a [routerLink]="['/perfil', post.user.id]">{{post.category.name}} - {{post.user.name + ' ' + post.user.surname}}</a>
+    </p>
     <hr>
     <div *ngIf="post.image">
         <img src="{{url + 'post/image/' + post.image}}" class="w-50" />
